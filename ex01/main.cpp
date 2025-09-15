@@ -13,14 +13,32 @@
 #include <iostream>
 #include <string.h>
 #include "Contact.hpp"
+#include "PhoneBook.hpp"
 int main(void)
 {
-	std::string action;
-	while(action.compare("EXIT") == 0)
+	PhoneBook book;
+	std::string action = "";
+	while(action.compare("EXIT"))
 	{
-		if (action.compare("ADD"))
+		std::cout << "Choose an action : ";
+		std::getline(std::cin, action);
+		if (action.compare("ADD") == 0)
 		{
-			Contact c = Contact();
+			book.add();
+			continue;
+		}
+		else if (action.compare("SEARCH") == 0)
+		{
+			std::string number;
+			book.printAll();
+			std::cout << "# of contact to look : ";
+			std::getline(std::cin, number);
+			book.search(std::stoi(number));
+			continue;
+		}
+		else if (action.compare("EXIT"))
+		{
+			std::cout << "Incorrect action. (ADD / SEARCH / EXIT) : "; 
 		}
 	}
 }

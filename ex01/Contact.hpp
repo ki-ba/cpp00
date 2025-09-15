@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -17,60 +18,29 @@
 class Contact
 {
 private:
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	phone_number;
-	std::string	darkest_secret;
+	std::string	m_first_name;
+	std::string	m_last_name;
+	std::string	m_nickname;
+	std::string	m_phone_number;
+	std::string	m_darkest_secret;
 public:
-	Contact()
-	{
-		std::cout << "Default constructor called" << std::endl;
-		while (this->first_name.empty())
-	{
-		std::cout << "first name :";
-		std::cin >> this->first_name;
-	}
-	std::cout << "last name :";
-	std::cin >> this->last_name;
-	std::cout << "nickname:";
-	std::cin >> this->nickname;
-	std::cout << "phone number:";
-	std::cin >> this->phone_number;
-	std::cout << "darkest secret:";
-	std::cin >> this->darkest_secret;
-	}
+	Contact();
+	Contact(std::string first_name, std::string last_name, std::string nickname, std::string phone_number, std::string darkest_secret);
+	Contact(Contact &other);
+	~Contact();
+	void operator=(const Contact &other);
+	bool isValid();
+	void print();
+	void printFull();
 
-	Contact(Contact &other)
-	{
-		std::cout << "Copy constructor called" << std::endl;
-		this->first_name = other.first_name;
-		this->last_name = other.last_name;
-		this->nickname = other.nickname;
-		this->darkest_secret = other.darkest_secret;
-	}
+	// Setters
 
-	~Contact(){}
+	void update();
+	void set_first_name();
+	void set_last_name();
+	void set_nickname();
+	void set_phone_number();
+	void set_darkest_secret();
 
-	void operator=(const Contact &other)
-	{
-		std::cout << "Copy assignment constructor called" << std::endl;
-		this->first_name = other.first_name;
-		this->last_name = other.last_name;
-		this->nickname = other.nickname;
-		this->phone_number = other.phone_number;
-		this->darkest_secret = other.darkest_secret;
-	}
-
-	bool isValid()
-	{
-		return (!this->first_name.empty() && !this->last_name.empty() \
-		&& !this->nickname.empty() && !this->phone_number.empty() \
-		&& !this->darkest_secret.empty());
-	}
-	void print()
-	{
-		std::cout << "soon" << std::endl;
-	}
 };
 

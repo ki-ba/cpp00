@@ -11,54 +11,65 @@
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include "Contact.hpp"
+#include <iomanip>
 
-Phonebook::PhoneBook()
+PhoneBook::PhoneBook()
 {
-private:
-	int		cur_index = 0;
-	Contact contacts[8] = {};
-public:
-	PhoneBook()
+	std::cout << "[PhoneBook]	Default constructor called" << std::endl;
+	m_cur_index = 0;
+}
+PhoneBook::PhoneBook(PhoneBook &other)
+{
+	std::cout << "[PhoneBook]	Copy constructor called" << std::endl;
+	for (int i = 0; i < 8; ++i)
+		m_contacts[i] = other.m_contacts[i];
+}
+PhoneBook::~PhoneBook()
+{
+	std::cout << "[PhoneBook]	Default destructor called" << std::endl;
+}
+void PhoneBook::operator=(const PhoneBook &other)
+{
+	std::cout << "[PhoneBook]	Copy assignment operator called" << std::endl;
+	for (int i = 0; i < 8; ++i)
 	{
-		std::cout << "Default constructor called" << std::endl;
+		m_contacts[i] = other.m_contacts[i];
 	}
-	PhoneBook(PhoneBook &other)
-	{
-		std::cout << "Copy constructor called" << std::endl;
-		for (int i = 0; i < 8; ++i)
-			this->contacts[i] = other.contacts[i];
-	}
-	~PhoneBook()
-	{
-		std::cout << "Default destructor called" << std::endl;
-	}
-	void operator=(const PhoneBook &other)
-	{
-		for (int i = 0; i < 8; ++i)
-		{
-			this->contacts[i] = other.contacts[i];
-		}
-	}
+}
 
-	void	search(int n)
-	{
-		if (n >= 8)
-			std::cout << "Error : phonebook can only hold 8 contacts." << std::endl;
-		if (contacts[n].isValid())
-			contacts[n].print();
-	}
+void	PhoneBook::search(int n)
+{
+	
+	if (n >= 8)
+		std::cout << "Error : phonebook can only hold 8 contacts." << std::endl;
+	else if (m_contacts[n].isValid() == 0)
+			std::cout << "Error : no contact with that number." << std::endl;
+	else
+		m_contacts[n].printFull();
+}
 
-	void	add(Contact contact)
+void	PhoneBook::add()
+{
+	if (m_cur_index == 8)
 	{
-		if (cur_index == 8)
-			cur_index = 0;
-		this->contacts[cur_index] = contact;
-		++this->cur_index;
+		std::cout << "Warning : Max # of contact reached. Erasing oldest one." << std::endl;
+		m_cur_index = 0;
 	}
-	void	printAll()
-	{
-		for (int i = 0; i < 8; ++i)
-			this->contacts[i].print();
-	}
+	Contact c;
+	c.update();
+	m_contacts[m_cur_index] = c;
+	++m_cur_index;
+}
+void	PhoneBook::printAll()
+{
+	std::cout << std::setw(10) << "FIRST NAME" << "|"
+		<< std::setw(10) << "LAST NAME" << "|"
+		<< std::setw(10) << "NICKNAME" << "|"
+		<< std::setw(10) << "PHONE #" << std::endl;
 
-};
+	for (int i = 0; i < 8; ++i)
+		m_contacts[i].print();
+}
+
+
