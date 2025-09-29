@@ -64,10 +64,17 @@ bool Contact::isValid()
 
 void Contact::print()
 {
-	std::cout << std::setw(10) << m_first_name << "|" 
-		<< std::setw(10) << m_last_name << "|"
-		<< std::setw(10) << m_nickname << "|"
-		<< std::setw(10) << m_phone_number << std::endl;
+	std::string attributes[4] = {m_first_name, m_last_name, m_nickname, m_phone_number};
+	for (int i = 0; i < 4; ++i)
+	{
+		std::cout << std::setw(10);
+		if (attributes[i].length() < 10)
+			std::cout << attributes[i];
+		else
+			std::cout << attributes[i].substr(0, 9) + ".";
+		std::cout << "|";
+	}
+	std::cout << std::endl;
 }
 
 void Contact::printFull()

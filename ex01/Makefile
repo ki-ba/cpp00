@@ -4,7 +4,13 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp PhoneBook.cpp Contact.cpp
 INC = Phonebook.hpp Contact.hpp
 
-OBJ = $(SRC:%.cpp=%.o)
+INC_DIR = inc/
+OBJ_DIR = .obj/
+SRC_DIR = src/
+
+INC_P = $(addprefix $(INC_DIR), $(INC))
+
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:%.cpp=%.o))
 
 .PHONY = all re clean fclean
 
@@ -19,8 +25,11 @@ fclean : clean
 re : fclean
 	$(MAKE) all
 
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-%.o : %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME) : $(OBJ)
+	$(CC) $(CFLAGS) -I $(INC_DIR) $(OBJ) -o $(NAME)
+
+$(OBJ_DIR)%.o : $(SRC_DIR)%.cpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@

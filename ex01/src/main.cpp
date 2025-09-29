@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <sstream>
 #include <string.h>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
@@ -18,27 +19,34 @@ int main(void)
 {
 	PhoneBook book;
 	std::string action = "";
-	while(action.compare("EXIT"))
+	while(action != "EXIT")
 	{
 		std::cout << "Choose an action : ";
 		std::getline(std::cin, action);
-		if (action.compare("ADD") == 0)
+		if(std::cin.eof())
+			return (0);
+		if (action == "ADD")
 		{
 			book.add();
 			continue;
 		}
-		else if (action.compare("SEARCH") == 0)
+		else if (action == "SEARCH")
 		{
 			std::string number;
+			int n;
 			book.printAll();
 			std::cout << "# of contact to look : ";
 			std::getline(std::cin, number);
-			book.search(std::stoi(number));
+			if(std::cin.eof())
+				return (0);
+			std::istringstream	temp(number);
+			temp >> n;
+			book.search(n);
 			continue;
 		}
-		else if (action.compare("EXIT"))
+		else if (action != "EXIT")
 		{
-			std::cout << "Incorrect action. (ADD / SEARCH / EXIT) : "; 
+			std::cout << "Incorrect action. (ADD / SEARCH / EXIT) : " << std::endl;
 		}
 	}
 }
