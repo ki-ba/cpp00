@@ -68,7 +68,7 @@ void Contact::print()
 	for (int i = 0; i < 4; ++i)
 	{
 		std::cout << std::setw(10);
-		if (attributes[i].length() < 10)
+		if (attributes[i].length() <= 10)
 			std::cout << attributes[i];
 		else
 			std::cout << attributes[i].substr(0, 9) + ".";
@@ -95,6 +95,7 @@ void Contact::update()
 	set_darkest_secret();
 
 }
+
 void Contact::set_first_name()
 {
 	std::cout << "First Name :	";

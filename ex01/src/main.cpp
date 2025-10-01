@@ -12,8 +12,6 @@
 
 #include <iostream>
 #include <sstream>
-#include <string.h>
-#include "Contact.hpp"
 #include "PhoneBook.hpp"
 int main(void)
 {
@@ -39,10 +37,15 @@ int main(void)
 			std::getline(std::cin, number);
 			if(std::cin.eof())
 				return (0);
+			else if(number.empty())
+					std::cout << "Error : empty input" << std::endl;
+			else
+			{
 			std::istringstream	temp(number);
 			temp >> n;
 			book.search(n);
 			continue;
+			}
 		}
 		else if (action != "EXIT")
 		{

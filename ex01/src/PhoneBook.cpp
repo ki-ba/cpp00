@@ -53,13 +53,18 @@ void	PhoneBook::add()
 {
 	if (m_cur_index == 8)
 	{
-		std::cout << "Warning : Max # of contact reached. Erasing oldest one." << std::endl;
+		std::cout << "Warning : Max # of contact reached. Now erasing oldest ones." << std::endl;
 		m_cur_index = 0;
 	}
 	Contact c;
 	c.update();
-	m_contacts[m_cur_index] = c;
-	++m_cur_index;
+	if (c.isValid())
+	{
+		m_contacts[m_cur_index] = c;
+		++m_cur_index;
+	}
+	else
+		std::cout << "Error : incorrect field[s] in contact" << std::endl;
 }
 void	PhoneBook::printAll()
 {
