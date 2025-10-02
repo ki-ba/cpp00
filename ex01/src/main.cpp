@@ -26,6 +26,8 @@ int main(void)
 		if (action == "ADD")
 		{
 			book.add();
+			if(std::cin.eof())
+				return (1);
 			continue;
 		}
 		else if (action == "SEARCH")
@@ -36,9 +38,9 @@ int main(void)
 			std::cout << "# of contact to look : ";
 			std::getline(std::cin, number);
 			if(std::cin.eof())
-				return (0);
-			else if(number.empty())
-					std::cout << "Error : empty input" << std::endl;
+				return (1);
+			else if(number.find_first_of("0123456789") == std::string::npos || number.length() != 1)
+					std::cout << "Error : incorrect input" << std::endl;
 			else
 			{
 			std::istringstream	temp(number);

@@ -17,13 +17,13 @@
 PhoneBook::PhoneBook()
 {
 	std::cout << "[PhoneBook]	Default constructor called" << std::endl;
-	m_cur_index = 0;
+	this->m_cur_index = 0;
 }
 PhoneBook::PhoneBook(PhoneBook &other)
 {
 	std::cout << "[PhoneBook]	Copy constructor called" << std::endl;
 	for (int i = 0; i < 8; ++i)
-		m_contacts[i] = other.m_contacts[i];
+		this->m_contacts[i] = other.m_contacts[i];
 }
 PhoneBook::~PhoneBook()
 {
@@ -33,9 +33,7 @@ void PhoneBook::operator=(const PhoneBook &other)
 {
 	std::cout << "[PhoneBook]	Copy assignment operator called" << std::endl;
 	for (int i = 0; i < 8; ++i)
-	{
-		m_contacts[i] = other.m_contacts[i];
-	}
+		this->m_contacts[i] = other.m_contacts[i];
 }
 
 void	PhoneBook::search(int n)
@@ -43,25 +41,25 @@ void	PhoneBook::search(int n)
 	
 	if (n >= 8)
 		std::cout << "Error : phonebook can only hold 8 contacts." << std::endl;
-	else if (m_contacts[n].isValid() == 0)
+	else if (this->m_contacts[n].isValid() == 0)
 			std::cout << "Error : no contact with that number." << std::endl;
 	else
-		m_contacts[n].printFull();
+		this->m_contacts[n].printFull();
 }
 
 void	PhoneBook::add()
 {
-	if (m_cur_index == 8)
+	if (this->m_cur_index == 8)
 	{
 		std::cout << "Warning : Max # of contact reached. Now erasing oldest ones." << std::endl;
-		m_cur_index = 0;
+		this->m_cur_index = 0;
 	}
 	Contact c;
 	c.update();
 	if (c.isValid())
 	{
-		m_contacts[m_cur_index] = c;
-		++m_cur_index;
+		this->m_contacts[this->m_cur_index] = c;
+		++this->m_cur_index;
 	}
 	else
 		std::cout << "Error : incorrect field[s] in contact" << std::endl;
@@ -74,7 +72,7 @@ void	PhoneBook::printAll()
 		<< std::setw(10) << "PHONE #" << std::endl;
 
 	for (int i = 0; i < 8; ++i)
-		m_contacts[i].print();
+		this->m_contacts[i].print();
 }
 
 

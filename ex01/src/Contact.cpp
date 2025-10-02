@@ -34,10 +34,10 @@ Contact::Contact(std::string first_name, std::string last_name, std::string nick
 Contact::Contact(Contact &other)
 {
 	std::cout << "[Contact]	Copy constructor called" << std::endl;
-	m_first_name = other.m_first_name;
-	m_last_name = other.m_last_name;
-	m_nickname = other.m_nickname;
-	m_darkest_secret = other.m_darkest_secret;
+	this->m_first_name = other.m_first_name;
+	this->m_last_name = other.m_last_name;
+	this->m_nickname = other.m_nickname;
+	this->m_darkest_secret = other.m_darkest_secret;
 }
 
 Contact::~Contact()
@@ -48,23 +48,23 @@ Contact::~Contact()
 void Contact::operator=(const Contact &other)
 {
 	std::cout << "[Contact]	Copy assignment constructor called" << std::endl;
-	m_first_name = other.m_first_name;
-	m_last_name = other.m_last_name;
-	m_nickname = other.m_nickname;
-	m_phone_number = other.m_phone_number;
-	m_darkest_secret = other.m_darkest_secret;
+	this->m_first_name = other.m_first_name;
+	this->m_last_name = other.m_last_name;
+	this->m_nickname = other.m_nickname;
+	this->m_phone_number = other.m_phone_number;
+	this->m_darkest_secret = other.m_darkest_secret;
 }
 
 bool Contact::isValid()
 {
-	return (!m_first_name.empty() && !m_last_name.empty() \
-	&& !m_nickname.empty() && !m_phone_number.empty() \
-	&& !m_darkest_secret.empty());
+	return (!this->m_first_name.empty() && !this->m_last_name.empty() \
+	&& !this->m_nickname.empty() && !this->m_phone_number.empty() \
+	&& !this->m_darkest_secret.empty());
 }
 
 void Contact::print()
 {
-	std::string attributes[4] = {m_first_name, m_last_name, m_nickname, m_phone_number};
+	std::string attributes[4] = {this->m_first_name, m_last_name, m_nickname, m_phone_number};
 	for (int i = 0; i < 4; ++i)
 	{
 		std::cout << std::setw(10);
@@ -79,49 +79,60 @@ void Contact::print()
 
 void Contact::printFull()
 {
-	std::cout << "First Name :		" << m_first_name << std::endl;
-	std::cout << "Last Name :		" << m_last_name << std::endl;
-	std::cout << "Nickname :		" << m_nickname << std::endl;
-	std::cout << "Phone number :		" << m_phone_number << std::endl;
-	std::cout << "Darkest secret :	" << m_darkest_secret << std::endl;
+	std::cout << "First Name :		" << this->m_first_name << std::endl;
+	std::cout << "Last Name :		" << this->m_last_name << std::endl;
+	std::cout << "Nickname :		" << this->m_nickname << std::endl;
+	std::cout << "Phone number :		" << this->m_phone_number << std::endl;
+	std::cout << "Darkest secret :	" << this->m_darkest_secret << std::endl;
 }
 
-void Contact::update()
+int Contact::update()
 {
 	set_first_name();
+	if (std::cin.eof())
+		return 1;
 	set_last_name();
+	if (std::cin.eof())
+		return 1;
 	set_nickname();
+	if (std::cin.eof())
+		return 1;
 	set_phone_number();
+	if (std::cin.eof())
+		return 1;
 	set_darkest_secret();
+	if (std::cin.eof())
+		return 1;
+	return 0;
 
 }
 
 void Contact::set_first_name()
 {
-	std::cout << "First Name :	";
-	std::getline(std::cin,  m_first_name);
+	std::cout << "First Name :		";
+	std::getline(std::cin,  this->m_first_name);
 }
 
 void Contact::set_last_name()
 {
-	std::cout << "Last Name :	";
-	std::getline(std::cin, m_last_name);
+	std::cout << "Last Name :		";
+	std::getline(std::cin, this->m_last_name);
 }
 
 void Contact::set_nickname()
 {
-	std::cout << "Nickname :	";
-	std::getline(std::cin, m_nickname);
+	std::cout << "Nickname :		";
+	std::getline(std::cin, this->m_nickname);
 }
 
 void Contact::set_phone_number()
 {
-	std::cout << "Phone Number :	";
-	std::getline(std::cin,  m_phone_number);
+	std::cout << "Phone Number :		";
+	std::getline(std::cin,  this->m_phone_number);
 }
 
 void Contact::set_darkest_secret()
 {
 	std::cout << "Darkest secret :	";
-	std::getline(std::cin, m_darkest_secret);
+	std::getline(std::cin, this->m_darkest_secret);
 }

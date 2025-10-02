@@ -35,7 +35,7 @@ public:
 
 	// Setters
 
-	void update();
+	int update();
 	void set_first_name();
 	void set_last_name();
 	void set_nickname();

@@ -2,7 +2,7 @@ NAME = phonebook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp PhoneBook.cpp Contact.cpp
-INC = Phonebook.hpp Contact.hpp
+INC = PhoneBook.hpp Contact.hpp
 
 INC_DIR = inc/
 OBJ_DIR = .obj/
@@ -17,7 +17,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC:%.cpp=%.o))
 all : $(NAME)
 
 clean :
-	 rm -rf $(OBJ)
+	 rm -rf $(OBJ_DIR)
 
 fclean : clean
 	rm -rf $(NAME)
@@ -29,7 +29,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) -I $(INC_DIR) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.cpp | $(OBJ_DIR)
+$(OBJ_DIR)%.o : $(SRC_DIR)%.cpp $(INC_P) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
