@@ -29,18 +29,18 @@ public:
 	Contact(Contact &other);
 	~Contact();
 	void operator=(const Contact &other);
-	bool isValid();
-	void print();
-	void printFull();
+	bool isValid() const;
+	void print() const;
+	void printFull() const;
 
 	// Setters
 
 	int update();
-	void set_first_name();
-	void set_last_name();
-	void set_nickname();
-	void set_phone_number();
-	void set_darkest_secret();
+	void setFirstName(std::string newString);
+	void setLastName(std::string newString);
+	void setNickname(std::string newString);
+	void setPhoneNumber(std::string newString);
+	void setDarkestSecret(std::string newString);
 
 };
 

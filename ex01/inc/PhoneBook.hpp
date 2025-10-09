@@ -23,8 +23,8 @@ public:
 	PhoneBook(PhoneBook &other);
 	~PhoneBook();
 	void operator=(const PhoneBook &other);
-	void	search(int n);
+	void	search(int n) const;
+	void	printAll() const;
 	void	add();
-	void	printAll();
 
 };

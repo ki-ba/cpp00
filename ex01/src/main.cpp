@@ -35,11 +35,11 @@ int main(void)
 			std::string number;
 			int n;
 			book.printAll();
-			std::cout << "# of contact to look : ";
+			std::cout << "# of contact to look (1-9): ";
 			std::getline(std::cin, number);
 			if(std::cin.eof())
 				return (1);
-			else if(number.find_first_of("0123456789") == std::string::npos || number.length() != 1)
+			else if(number.find_first_of("123456789") == std::string::npos || number.length() != 1)
 					std::cout << "Error : incorrect input" << std::endl;
 			else
 			{
