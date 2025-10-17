@@ -13,6 +13,7 @@
 #include <iostream>
 #include <sstream>
 #include "PhoneBook.hpp"
+
 int main(void)
 {
 	PhoneBook book;
@@ -35,7 +36,7 @@ int main(void)
 			std::string number;
 			int n;
 			book.printAll();
-			std::cout << "# of contact to look (1-9): ";
+			std::cout << "# of contact to look (1-8): ";
 			std::getline(std::cin, number);
 			if(std::cin.eof())
 				return (1);
@@ -43,10 +44,10 @@ int main(void)
 					std::cout << "Error : incorrect input" << std::endl;
 			else
 			{
-			std::istringstream	temp(number);
-			temp >> n;
-			book.search(n);
-			continue;
+				std::istringstream	temp(number);
+				temp >> n;
+				book.search(n);
+				continue;
 			}
 		}
 		else if (action != "EXIT")

@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
 
 #include <string>
 #include <iostream>
@@ -35,7 +36,6 @@ public:
 
 	// Setters
 
-	int update();
 	void setFirstName(std::string newString);
 	void setLastName(std::string newString);
 	void setNickname(std::string newString);
@@ -44,3 +44,4 @@ public:
 
 };
 
+#endif

@@ -95,13 +95,14 @@ void	PhoneBook::add()
 }
 void	PhoneBook::printAll() const
 {
-	std::cout << std::setw(10) << "FIRST NAME" << "|"
+	std::cout << std::setw(5) << "INDEX" << "|"
+		<< std::setw(10) << "FIRST NAME" << "|"
 		<< std::setw(10) << "LAST NAME" << "|"
-		<< std::setw(10) << "NICKNAME" << "|"
-		<< std::setw(10) << "PHONE #" << std::endl;
+		<< std::setw(10) << "NICKNAME" << "|" << std::endl;
 
 	for (int i = 0; i < 8; ++i)
+	{
+		std::cout << std::setw(5) << i + 1 << "|";
 		this->m_contacts[i].print();
+	}
 }
-
-

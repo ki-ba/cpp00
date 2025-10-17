@@ -30,11 +30,12 @@ Contact::Contact(std::string first_name, std::string last_name, std::string nick
 }
 
 Contact::Contact(Contact &other)
+	: m_first_name(other.m_first_name),
+	m_last_name(other.m_last_name),
+	m_nickname(other.m_nickname),
+	m_phone_number(other.m_phone_number),
+	m_darkest_secret(other.m_darkest_secret)
 {
-	this->m_first_name = other.m_first_name;
-	this->m_last_name = other.m_last_name;
-	this->m_nickname = other.m_nickname;
-	this->m_darkest_secret = other.m_darkest_secret;
 }
 
 Contact::~Contact()
@@ -59,8 +60,8 @@ bool Contact::isValid() const
 
 void Contact::print() const
 {
-	std::string attributes[4] = {this->m_first_name, m_last_name, m_nickname, m_phone_number};
-	for (int i = 0; i < 4; ++i)
+	std::string attributes[3] = {this->m_first_name, m_last_name, m_nickname};
+	for (int i = 0; i < 3; ++i)
 	{
 		std::cout << std::setw(10);
 		if (attributes[i].length() <= 10)
@@ -74,6 +75,7 @@ void Contact::print() const
 
 void Contact::printFull() const
 {
+
 	std::cout << "First Name :		" << this->m_first_name << std::endl;
 	std::cout << "Last Name :		" << this->m_last_name << std::endl;
 	std::cout << "Nickname :		" << this->m_nickname << std::endl;
