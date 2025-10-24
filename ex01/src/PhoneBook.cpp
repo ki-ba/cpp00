@@ -18,20 +18,9 @@ PhoneBook::PhoneBook()
 {
 	this->m_cur_index = 0;
 }
-PhoneBook::PhoneBook(PhoneBook &other)
-{
-	this->m_cur_index = other.m_cur_index;
-	for (int i = 0; i < 8; ++i)
-		this->m_contacts[i] = other.m_contacts[i];
-}
+
 PhoneBook::~PhoneBook()
 {
-}
-void PhoneBook::operator=(const PhoneBook &other)
-{
-	this->m_cur_index = other.m_cur_index;
-	for (int i = 0; i < 8; ++i)
-		this->m_contacts[i] = other.m_contacts[i];
 }
 
 void	PhoneBook::search(int n) const
@@ -45,7 +34,7 @@ void	PhoneBook::search(int n) const
 		this->m_contacts[n - 1].printFull();
 }
 
-void	PhoneBook::add()
+int	PhoneBook::add()
 {
 	Contact c;
 	std::string newValue;
@@ -57,32 +46,32 @@ void	PhoneBook::add()
 
 	std::cout << "First Name :		";
 	std::getline(std::cin, newValue);
-	if (std::cin.eof())
-		return ;
+	if (std::cin.fail() || std::cin.eof())
+		return (1);
 	c.setFirstName(newValue);
 	
 	std::cout << "Last Name :		";
 	std::getline(std::cin, newValue);
-	if (std::cin.eof())
-		return ;
+	if (std::cin.fail() || std::cin.eof())
+		return (1);
 	c.setLastName(newValue);
 
 	std::cout << "Nickname :		";
 	std::getline(std::cin, newValue);
-	if (std::cin.eof())
-		return ;
+	if (std::cin.fail() || std::cin.eof())
+		return (1);
 	c.setNickname(newValue);
 	
 	std::cout << "Phone Number :		";
 	std::getline(std::cin, newValue);
-	if (std::cin.eof())
-		return ;
+	if (std::cin.fail() || std::cin.eof())
+		return (1);
 	c.setPhoneNumber(newValue);
 	
 	std::cout << "Darkest secret :	";
 	std::getline(std::cin, newValue);
-	if (std::cin.eof())
-		return ;
+	if (std::cin.fail() || std::cin.eof())
+		return (1);
 	c.setDarkestSecret(newValue);
 
 	if (c.isValid())
@@ -92,7 +81,9 @@ void	PhoneBook::add()
 	}
 	else
 		std::cout << "Error : incorrect field[s] in contact" << std::endl;
+	return (0);
 }
+
 void	PhoneBook::printAll() const
 {
 	std::cout << std::setw(5) << "INDEX" << "|"

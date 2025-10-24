@@ -22,13 +22,17 @@ int main(void)
 	{
 		std::cout << "Choose an action : ";
 		std::getline(std::cin, action);
+		if (std::cin.fail())
+			return (1);
 		if(std::cin.eof())
 			return (0);
 		if (action == "ADD")
 		{
-			book.add();
-			if(std::cin.eof())
+			if (book.add() || std::cin.eof())
+			{
+				std::cout << "error adding contact" << std::endl;
 				return (1);
+			}
 			continue;
 		}
 		else if (action == "SEARCH")
@@ -38,9 +42,12 @@ int main(void)
 			book.printAll();
 			std::cout << "# of contact to look (1-8): ";
 			std::getline(std::cin, number);
-			if(std::cin.eof())
+			if(std::cin.fail() || std::cin.eof())
+			{
+				std::cout << "input error" << std::endl;
 				return (1);
-			else if(number.find_first_of("123456789") == std::string::npos || number.length() != 1)
+			}
+			else if(number.find_first_of("12345678") == std::string::npos || number.length() != 1)
 					std::cout << "Error : incorrect input" << std::endl;
 			else
 			{

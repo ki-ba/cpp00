@@ -21,13 +21,10 @@ private:
 	Contact m_contacts[8];
 public:
 	PhoneBook();
-	PhoneBook(PhoneBook &other);
 	~PhoneBook();
-	void operator=(const PhoneBook &other);
 	void	search(int n) const;
 	void	printAll() const;
-	void	add();
-
+	int		add();
 };
 
 #endif
