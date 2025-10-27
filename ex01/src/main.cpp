@@ -58,8 +58,6 @@ int main(void)
 			}
 		}
 		else if (action != "EXIT")
-		{
-			std::cout << "Incorrect action. (ADD / SEARCH / EXIT) : " << std::endl;
-		}
+			continue;
 	}
 }
